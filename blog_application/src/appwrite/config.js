@@ -16,7 +16,7 @@ export class Service {
 
      }
 
-     async createPost({title , slug , content , feturedImage , status , userId}) {
+     async createPost({title , slug , content , featuredImage , status , userId}) {
           try {
                return await this.databases.createDocument(
                     conf.appwriteDatabaseId,
@@ -25,18 +25,18 @@ export class Service {
                     {
                          title,
                          content,
-                         feturedImage,
+                         featuredImage,
                          status, 
                          userId,
                     }
                )
           } catch (error) {
                console.log("appwrite service :: createPost :: error - ", error);
-
+               console.log(slug)
           }
      }
 
-     async updatePost(slug, { title, content, feturedImage, status }) {
+     async updatePost(slug, { title, content, featuredImage, status }) {
           try {
                
                return await this.databases.updateDocument(
@@ -46,7 +46,7 @@ export class Service {
                     {
                          title, 
                          content, 
-                         feturedImage,
+                         featuredImage,
                          status
                     }
                )
@@ -62,7 +62,7 @@ export class Service {
                await this.databases.deleteDocument(
                     conf.appwriteDatabaseId,
                     conf.appwriteCollectionId,
-                    slug
+                    slug,
                )
                return true;
           } catch (error) {
@@ -83,10 +83,11 @@ export class Service {
 
           } catch (error) {
                console.log("appwrite service :: getPost :: error - ", error);
+               return false
           }
      }
 
-     async getAllPosts(queries = [Query.equal("status" , "active")]) {
+     async getPosts(queries = [Query.equal("status" , "active")]) {
           try {
                
                return await this.databases.listDocuments(

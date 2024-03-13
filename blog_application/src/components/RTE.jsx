@@ -1,8 +1,8 @@
-import React from 'react'
-import { Editor } from '@tinymce/tinymce-react'
+import { Editor } from '@tinymce/tinymce-react';
 import { Controller } from 'react-hook-form'
 
-export default function RTE ({name , control , label , defaultValue ="" }) {
+export default function RTE ({ name , control , label , defaultValue ="" }) {
+   
     return (
       
         <div className='w-full'>
@@ -11,14 +11,14 @@ export default function RTE ({name , control , label , defaultValue ="" }) {
                     {label}
                 </label>
             }
-
             <Controller 
                 name={name || 'Content'}
                 control={control}
                 render={({ field: { onChange } }) => (
 
-                    <Editor 
-                        initialValue='default Value'
+                    <Editor
+                        apiKey='8srbjtvfy8dau7gr5cc3bpzkw9rvrk53uq0ohoc31qoy3n89'
+                        initialValue="<p>This is the initial content of the editor.</p>"
                         init={
                             {
                                 branding: false,
@@ -26,36 +26,19 @@ export default function RTE ({name , control , label , defaultValue ="" }) {
                                 menubar: false,
                                 initialValue: defaultValue,
                                 plugins: [
-                                    'image',
-                                    'advlist',
-                                    'autolink',
-                                    'lists',
-                                    'link',
-                                    'charmap',
-                                    'preview',
-                                    'print',
-                                    'anchor',
-                                    'searchreplace',
-                                    'code',
-                                    'visualblocks',
-                                    'fullscreen',
-                                    'insertdatetime',
-                                    'media',
-                                    'table',
-                                    'paste',
-                                    'code',
-                                    'help',
-                                    'wordcount'
+                                    'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                                    'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                                    'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
                                 ],
-                                toolbar: 'undo redo | blocks | image | formatselect | bold italic forecolor  backcolor |\
-                                 alignleft aligncenter alignright alignjustify | \
-                                bullist numlist outdent indent | removeformat | help ',
+                                toolbar:
+                                    'undo redo | blocks | image | formatselect | bold italic forecolor  backcolor |alignleft aligncenter alignright alignjustify |bullist numlist outdent indent | removeformat | help ',
 
-                                content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:18px"
+                                content_style:
+                                    "body { font-family:Helvetica,Arial,sans-serif; font-size:18px"
                             }
                         }
-                        onEditorChange={onChange}
-                    /> 
+                        onEditorChange={onChange} 
+                    />   
                 )}
             />
         </div>

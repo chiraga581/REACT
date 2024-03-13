@@ -1,13 +1,11 @@
 import { useId } from "react"
 import React from 'react'
 
-const Select = React.forwardRef(function Select(
-    {
+function Select({
         options,
         label,
-        className = '',
+        className,
         ...props
-
     }, ref)
     {
     
@@ -28,16 +26,17 @@ const Select = React.forwardRef(function Select(
                 >
                     {
                         options?.map((option) => {
-                            <option key={option} value={option}>
-                                {option}
-                            </option>
+                            return (
+                                <option key={option} value={option}>
+                                    {option}
+                                </option>
+                            )
                         })
                     }
-
+                    
                 </select> 
 
             </div>
         )
     }
-)
-export default Select
+export default React.forwardRef(Select)

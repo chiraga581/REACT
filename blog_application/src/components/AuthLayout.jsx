@@ -1,10 +1,10 @@
 //  mechanism how to protect states and routes
-//  Basically protexted container 
-import React, { Fragment, useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+//  Basically protected container 
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-export default function Protected ({children , authentication = false}) {
+export default function Protected({ children, authentication = true }) {
     
     const navigate = useNavigate();
     const [loader, setLoader] = useState(true)
@@ -20,5 +20,5 @@ export default function Protected ({children , authentication = false}) {
 
         setLoader(false)
     } , [authStatus, navigate , authentication])
-    return loader ? <h1>Loading....</h1> : <Fragment className=''> {children} </Fragment>
+    return loader ? <h1>Loading....</h1> : <> {children} </>
 }

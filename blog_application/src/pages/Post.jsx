@@ -4,6 +4,7 @@ import appwriteService from "../appwrite/config"
 import { Button, Container } from '../components'
 import parse from "html-react-parser"
 import { useSelector } from 'react-redux'
+
 const Post = () => {
 
     const [post, setPost] = useState(null);
@@ -12,7 +13,7 @@ const Post = () => {
 
     const userData = useSelector((state) => state.auth.userData)
     
-    const isAuthor = post && userData ? post.userId == userData.$id : false;
+    const isAuthor = post && userData ? post.userId === userData.$id : false;
 
     useEffect(() => {
         if (slug) {
@@ -36,8 +37,8 @@ const Post = () => {
                     appwriteService.deleteFile(post.featuredImage);
                     navigate("/");
                 }
-            })
-    }
+            });
+    };
 
     return post ?
         (
